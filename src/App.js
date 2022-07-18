@@ -1,8 +1,8 @@
-import "./assets/styles/app.css";
-import Header from "./components/Header/Header";
-import Categories from "./components/Categories/Categories";
-import Sort from "./components/Sort/Sort";
-import PizzaBlock from "./components/PizzaBlock/PizzaBlock";
+import './assets/styles/app.css';
+import Header from './components/Header/Header';
+import Categories from './components/Categories/Categories';
+import Sort from './components/Sort/Sort';
+import Products from './components/Products/Products';
 
 function App() {
   return (
@@ -16,13 +16,7 @@ function App() {
               <Sort />
             </div>
             <h2 className="content__title">Все пиццы</h2>
-            <div className="content__items">
-              <PizzaBlock />
-              <PizzaBlock />
-              <PizzaBlock />
-              <PizzaBlock />
-              <PizzaBlock />
-            </div>
+            <Products className="content__items" />
           </div>
         </div>
       </div>
