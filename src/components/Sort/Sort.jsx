@@ -1,31 +1,70 @@
 import React from 'react';
+import Popup from './Popup/Popup';
 
 const Sort = () => {
+  const [popupHidden, setPopupHidden] = React.useState(true);
+  const [sortNameId, setSortNameId] = React.useState(0);
+
+  const sortNames = [
+    { id: 0, text: 'популярности' },
+    { id: 1, text: 'цене' },
+    { id: 2, text: 'алфавиту' },
+  ];
+
+  const sortedItem = sortNames.map((item) =>
+    item.id === sortNameId ? item.text : null
+  );
+
+  const handlePopup = () => {
+    setPopupHidden(!popupHidden);
+  };
+
   return (
     <div className="sort">
       <div className="sort__label">
-        <svg
-          width="10"
-          height="6"
-          viewBox="0 0 10 6"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M10 5C10 5.16927 9.93815 5.31576 9.81445 5.43945C9.69075 5.56315 9.54427 5.625 9.375 5.625H0.625C0.455729 5.625 0.309245 5.56315 0.185547 5.43945C0.061849 5.31576 0 5.16927 0 5C0 4.83073 0.061849 4.68424 0.185547 4.56055L4.56055 0.185547C4.68424 0.061849 4.83073 0 5 0C5.16927 0 5.31576 0.061849 5.43945 0.185547L9.81445 4.56055C9.93815 4.68424 10 4.83073 10 5Z"
-            fill="#2C2C2C"
-          />
-        </svg>
+        {popupHidden ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            fill="currentColor"
+            className="bi bi-caret-down-fill"
+            viewBox="0 0 16 16"
+            id="IconChangeColor"
+          >
+            <path
+              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              id="mainIconPathAttribute"
+            ></path>
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            fill="currentColor"
+            className="bi bi-caret-down-fill"
+            viewBox="0 0 16 16"
+            id="IconChangeColor"
+            transform="rotate(180)"
+          >
+            <path
+              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+              id="mainIconPathAttribute"
+            ></path>
+          </svg>
+        )}
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={() => handlePopup()}>{sortedItem}</span>
       </div>
-      <div className="sort__popup">
-        <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
-        </ul>
-      </div>
+      <Popup
+        className="sort__popup"
+        popupHidden={popupHidden}
+        sortNames={sortNames}
+        sortNameId={sortNameId}
+        setSortNameId={setSortNameId}
+        handlePopup={handlePopup}
+      />
     </div>
   );
 };
