@@ -15,9 +15,23 @@ const Sort = () => {
     item.id === sortNameId ? item.text : null
   );
 
-  const handlePopup = () => {
-    setPopupHidden(!popupHidden);
-  };
+  const handlePopup = () => setPopupHidden(!popupHidden);
+
+  const popupRef = React.useRef();
+
+  (function useOutsidePopup(ref) {
+    React.useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setPopupHidden(true);
+        }
+      }
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref]);
+  })(popupRef);
 
   return (
     <div className="sort">
@@ -64,6 +78,7 @@ const Sort = () => {
         sortNameId={sortNameId}
         setSortNameId={setSortNameId}
         handlePopup={handlePopup}
+        popupRef={popupRef}
       />
     </div>
   );

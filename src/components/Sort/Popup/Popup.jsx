@@ -7,7 +7,7 @@ const Popup = ({ popupHidden, sortNames, ...props }) => {
   };
 
   return (
-    <div hidden={popupHidden} className={props.className}>
+    <div hidden={popupHidden} className={props.className} ref={props.popupRef}>
       <ul>
         {sortNames.map((name) => (
           <li
