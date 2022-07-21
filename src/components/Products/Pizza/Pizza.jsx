@@ -1,5 +1,6 @@
 import React from 'react';
 import { sizeReducer, typeReducer } from './reducer';
+import styles from './Pizza.module.css';
 
 const Pizza = ({ ...product }) => {
   const pizzaTypes = ['Тонкое', 'Традиционное'];
@@ -20,15 +21,15 @@ const Pizza = ({ ...product }) => {
   };
 
   return (
-    <div className="pizza-block">
-      <img className="pizza-block__image" src={product.imageUrl} alt="Pizza" />
-      <h4 className="pizza-block__title">{product.name}</h4>
-      <div className="pizza-block__selector">
+    <div className={styles.root}>
+      <img className={styles.image} src={product.imageUrl} alt="Pizza" />
+      <h4 className={styles.title}>{product.name}</h4>
+      <div className={styles.selector}>
         <ul>
           {product.types.map((type, index) => (
             <li
               onClick={() => handleClickType(type)}
-              className={pizzaType === type ? 'pizza-block-item--active' : ''}
+              className={pizzaType === type ? styles.active_btn : ''}
               key={index}
             >
               {pizzaTypes[type]}
@@ -40,15 +41,15 @@ const Pizza = ({ ...product }) => {
             <li
               onClick={() => handleClickSize(index)}
               key={index}
-              className={index === pizzaSize ? 'pizza-block-item--active' : ''}
+              className={index === pizzaSize ? styles.active_btn : ''}
             >
               {size} см.
             </li>
           ))}
         </ul>
       </div>
-      <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {product.price} ₽</div>
+      <div className={styles.bottom}>
+        <div className={styles.price}>от {product.price} ₽</div>
         <div className="button button--outline button--add">
           <svg
             width="12"

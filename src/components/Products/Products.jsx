@@ -1,9 +1,11 @@
 import React from 'react';
 import Pizza from './Pizza/Pizza';
 import axios from 'axios';
+import Skeleton from './Pizza/Skeleton';
 
 const Products = ({ className }) => {
   const [products, setProducts] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     async function fetchProducts() {
@@ -14,6 +16,8 @@ const Products = ({ className }) => {
         return response.data;
       } catch (error) {
         console.error('Products fetching problem: ' + error.message);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -22,9 +26,9 @@ const Products = ({ className }) => {
 
   return (
     <div className={className}>
-      {products.map((product) => (
-        <Pizza key={product.id} {...product} />
-      ))}
+      {isLoading
+        ? [...new Array(12)].map((_, index) => <Skeleton key={index} />)
+        : products.map((product) => <Pizza key={product.id} {...product} />)}
     </div>
   );
 };
