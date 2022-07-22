@@ -10,6 +10,7 @@ const Products = ({ className }) => {
   React.useEffect(() => {
     async function fetchProducts() {
       try {
+        window.scrollTo(0, 0);
         const response = await axios.get(
           'https://62d7c93949c87ff2af3cd25a.mockapi.io/products'
         );

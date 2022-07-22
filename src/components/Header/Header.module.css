@@ -10,6 +10,12 @@
   width: 90%;
   margin: 0 auto;
 }
+@media (max-width: 640px) {
+  .container {
+    flex-direction: column;
+    row-gap: 1.5rem;
+  }
+}
 
 .logo {
   display: flex;
