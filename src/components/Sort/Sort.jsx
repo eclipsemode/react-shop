@@ -1,18 +1,43 @@
 import React from 'react';
 import Popup from './Popup/Popup';
 
-const Sort = () => {
+const Sort = ({ sortNameId, setSortNameId }) => {
   const [popupHidden, setPopupHidden] = React.useState(true);
-  const [sortNameId, setSortNameId] = React.useState(0);
 
   const sortNames = [
-    { id: 0, text: 'популярности' },
-    { id: 1, text: 'цене' },
-    { id: 2, text: 'алфавиту' },
+    { id: 0, sortType: 'rating', orderType: 'asc', text: 'популярности' },
+    {
+      id: 1,
+      sortType: 'rating',
+      orderType: 'desc',
+      text: 'популярности по убыванию',
+    },
+    { id: 2, sortType: 'price', orderType: 'asc', text: 'цене' },
+    { id: 3, sortType: 'price', orderType: 'desc', text: 'цене по убыванию' },
+    { id: 4, sortType: 'name', text: 'алфавиту' },
   ];
 
+  const handleSortType = (id) => {
+    let sortTypeFound;
+    let orderTypeFound;
+
+    sortNames.forEach((item) =>
+      item.id === id
+        ? (sortTypeFound = item.sortType) && (orderTypeFound = item.orderType)
+        : null
+    );
+
+    setSortNameId({
+      id: id,
+      sortType: sortTypeFound,
+      orderType: orderTypeFound,
+    });
+
+    handlePopup();
+  };
+
   const sortedItem = sortNames.map((item) =>
-    item.id === sortNameId ? item.text : null
+    item.id === sortNameId.id ? item.text : null
   );
 
   const handlePopup = () => setPopupHidden(!popupHidden);
@@ -76,7 +101,7 @@ const Sort = () => {
         popupHidden={popupHidden}
         sortNames={sortNames}
         sortNameId={sortNameId}
-        setSortNameId={setSortNameId}
+        handleSortType={handleSortType}
         handlePopup={handlePopup}
         popupRef={popupRef}
       />

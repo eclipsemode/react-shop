@@ -1,7 +1,6 @@
 import React from 'react';
-import categoryReducer from './reducer';
 
-const Categories = () => {
+const Categories = ({ categoryId, setCategoryId }) => {
   const categories = [
     'Все',
     'Мясные',
@@ -11,14 +10,8 @@ const Categories = () => {
     'Закрытые',
   ];
 
-  // noinspection JSCheckFunctionSignatures
-  const [categoryState, categoryDispatch] = React.useReducer(
-    categoryReducer,
-    0
-  );
-
-  const handleClickCategory = (value) => {
-    categoryDispatch({ payload: value });
+  const handleClickCategory = (index) => {
+    setCategoryId(index);
   };
 
   return (
@@ -28,7 +21,7 @@ const Categories = () => {
           <li
             key={index}
             onClick={() => handleClickCategory(index)}
-            className={categoryState === index ? 'categories-item--active' : ''}
+            className={categoryId === index ? 'categories-item--active' : ''}
           >
             {name}
           </li>
