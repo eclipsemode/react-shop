@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
 import React from 'react';
+import Search from '../Search/Search';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div className={styles.root}>
       <div className={styles.container}>
@@ -17,7 +18,11 @@ const Header = () => {
             </div>
           </div>
         </Link>
-        <div className="header__cart">
+        <div className={styles.card_search}>
+          <Search
+            searchValue={props.searchValue}
+            setSearchValue={props.setSearchValue}
+          />
           <Link to="/cart" className="button button--cart">
             <span>520 ₽</span>
             <div className="button__delimiter"></div>

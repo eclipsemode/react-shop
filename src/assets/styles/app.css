@@ -245,6 +245,7 @@ a {
   align-items: center;
   line-height: 23px;
   padding: 12px 25px;
+  min-width: auto;
 }
 .button--cart svg {
   margin-right: 8px;
@@ -253,6 +254,7 @@ a {
 .button--cart span {
   font-weight: 600;
   font-size: 16px;
+  white-space: nowrap;
 }
 
 * {
