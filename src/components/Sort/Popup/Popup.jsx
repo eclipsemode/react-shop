@@ -2,7 +2,7 @@ import React from 'react';
 
 const Popup = ({ popupHidden, sortNames, ...props }) => {
   return (
-    <div hidden={popupHidden} className={props.className} ref={props.popupRef}>
+    <div hidden={popupHidden} className={props.className}>
       <ul>
         {sortNames.map((name) => (
           <li

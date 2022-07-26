@@ -8,15 +8,15 @@ const Header = () => {
   return (
     <div className={styles.root}>
       <div className={styles.container}>
-        <div className={styles.logo}>
-          <img width="38" src={logo} alt="Pizza logo" />
-          <div>
-            <h1>
-              <Link to="/">React Pizza</Link>
-            </h1>
-            <p>самая вкусная пицца во вселенной</p>
+        <Link to="/">
+          <div className={styles.logo}>
+            <img width="38" src={logo} alt="Pizza logo" />
+            <div>
+              <h1>React Pizza</h1>
+              <p>самая вкусная пицца во вселенной</p>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
             <span>520 ₽</span>

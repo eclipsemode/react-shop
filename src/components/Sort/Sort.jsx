@@ -59,7 +59,7 @@ const Sort = ({ sortNameId, setSortNameId }) => {
   })(popupRef);
 
   return (
-    <div className="sort">
+    <div className="sort" ref={popupRef}>
       <div className="sort__label">
         {popupHidden ? (
           <svg
