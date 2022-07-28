@@ -6,10 +6,13 @@ import axios from 'axios';
 import Pizza from './Pizza/Pizza';
 import Skeleton from './Pizza/Skeleton';
 
-const Products = ({ className, categoryId, sortNameId }) => {
+const Products = ({ className, categoryId }) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const searchValue = useSelector((state) => state.filter.value);
   const products = useSelector((state) => state.products.value);
+  const sortId = useSelector((state) => state.filter.id);
+  const sortType = useSelector((state) => state.filter.sortType);
+  const sortOrder = useSelector((state) => state.filter.orderType);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -21,9 +24,9 @@ const Products = ({ className, categoryId, sortNameId }) => {
           'https://62d7c93949c87ff2af3cd25a.mockapi.io/products?' +
             (categoryId ? 'category=' + categoryId + '&' : '') +
             'sortBy=' +
-            sortNameId.sortType +
+            sortType +
             '&order=' +
-            sortNameId.orderType +
+            sortOrder +
             (searchValue ? '&search=' + searchValue : '')
         );
         return response.data;
@@ -35,7 +38,7 @@ const Products = ({ className, categoryId, sortNameId }) => {
     }
 
     fetchProducts().then((data) => dispatch(setProducts(data)));
-  }, [categoryId, sortNameId, searchValue, dispatch]);
+  }, [categoryId, sortId, sortType, sortOrder, searchValue, dispatch]);
 
   return (
     <div className={className}>

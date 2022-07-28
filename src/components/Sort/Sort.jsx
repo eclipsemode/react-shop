@@ -1,8 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import Popup from './Popup/Popup';
 
-const Sort = ({ sortNameId, setSortNameId }) => {
+const Sort = () => {
   const [popupHidden, setPopupHidden] = React.useState(true);
+  const sortId = useSelector((state) => state.filter.id);
 
   const sortNames = [
     { id: 0, sortType: 'rating', orderType: 'asc', text: 'популярности' },
@@ -17,27 +20,8 @@ const Sort = ({ sortNameId, setSortNameId }) => {
     { id: 4, sortType: 'name', text: 'алфавиту' },
   ];
 
-  const handleSortType = (id) => {
-    let sortTypeFound;
-    let orderTypeFound;
-
-    sortNames.forEach((item) =>
-      item.id === id
-        ? (sortTypeFound = item.sortType) && (orderTypeFound = item.orderType)
-        : null
-    );
-
-    setSortNameId({
-      id: id,
-      sortType: sortTypeFound,
-      orderType: orderTypeFound,
-    });
-
-    handlePopup();
-  };
-
   const sortedItem = sortNames.map((item) =>
-    item.id === sortNameId.id ? item.text : null
+    item.id === sortId ? item.text : null
   );
 
   const handlePopup = () => setPopupHidden(!popupHidden);
@@ -100,8 +84,6 @@ const Sort = ({ sortNameId, setSortNameId }) => {
         className="sort__popup"
         popupHidden={popupHidden}
         sortNames={sortNames}
-        sortNameId={sortNameId}
-        handleSortType={handleSortType}
         handlePopup={handlePopup}
         popupRef={popupRef}
       />
