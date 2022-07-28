@@ -1,11 +1,16 @@
 import React from 'react';
-import Pizza from './Pizza/Pizza';
+import { useSelector, useDispatch } from 'react-redux';
+import { setProducts } from '../../redux/features/productsSlice';
 import axios from 'axios';
+
+import Pizza from './Pizza/Pizza';
 import Skeleton from './Pizza/Skeleton';
 
-const Products = ({ className, categoryId, sortNameId, searchValue }) => {
-  const [products, setProducts] = React.useState([]);
+const Products = ({ className, categoryId, sortNameId }) => {
   const [isLoading, setIsLoading] = React.useState(true);
+  const searchValue = useSelector((state) => state.filter.value);
+  const products = useSelector((state) => state.products.value);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     async function fetchProducts() {
@@ -29,8 +34,8 @@ const Products = ({ className, categoryId, sortNameId, searchValue }) => {
       }
     }
 
-    fetchProducts().then((data) => setProducts(data));
-  }, [categoryId, sortNameId, searchValue]);
+    fetchProducts().then((data) => dispatch(setProducts(data)));
+  }, [categoryId, sortNameId, searchValue, dispatch]);
 
   return (
     <div className={className}>

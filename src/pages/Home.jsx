@@ -4,7 +4,7 @@ import Categories from '../components/Categories/Categories';
 import Sort from '../components/Sort/Sort';
 import Products from '../components/Products/Products';
 
-const Home = ({ searchValue }) => {
+const Home = () => {
   const [categoryId, setCategoryId] = useState(0);
   const [sortNameId, setSortNameId] = React.useState({
     id: 0,
@@ -23,7 +23,6 @@ const Home = ({ searchValue }) => {
         className="content__items"
         categoryId={categoryId}
         sortNameId={sortNameId}
-        searchValue={searchValue}
       />
     </>
   );

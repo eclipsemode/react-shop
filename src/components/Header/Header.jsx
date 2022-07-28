@@ -5,7 +5,7 @@ import styles from './Header.module.css';
 import React from 'react';
 import Search from '../Search/Search';
 
-const Header = (props) => {
+const Header = () => {
   return (
     <div className={styles.root}>
       <div className={styles.container}>
@@ -19,10 +19,7 @@ const Header = (props) => {
           </div>
         </Link>
         <div className={styles.card_search}>
-          <Search
-            searchValue={props.searchValue}
-            setSearchValue={props.setSearchValue}
-          />
+          <Search />
           <Link to="/cart" className="button button--cart">
             <span>520 ₽</span>
             <div className="button__delimiter"></div>
