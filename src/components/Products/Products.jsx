@@ -12,7 +12,7 @@ const Products = ({ className, categoryId }) => {
   const products = useSelector((state) => state.products.value);
   const sortId = useSelector((state) => state.filter.id);
   const sortType = useSelector((state) => state.filter.sortType);
-  const sortOrder = useSelector((state) => state.filter.orderType);
+  const sortOrder = useSelector((state) => state.filter.sortOrder);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
