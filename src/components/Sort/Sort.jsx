@@ -5,7 +5,7 @@ import Popup from './Popup/Popup';
 
 const Sort = () => {
   const [popupHidden, setPopupHidden] = React.useState(true);
-  const sortId = useSelector((state) => state.filter.id);
+  const sortId = useSelector((state) => state.filter.sortId);
 
   const sortNames = [
     { id: 0, sortType: 'rating', orderType: 'asc', text: 'популярности' },

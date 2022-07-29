@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import {
   setSortType,
-  setId,
+  setSortId,
   setSortOrder,
 } from '../../../redux/features/filterSlice';
 
 const Popup = ({ popupHidden, sortNames, className, handlePopup }) => {
-  const sortId = useSelector((state) => state.filter.id);
+  const sortId = useSelector((state) => state.filter.sortId);
   const dispatch = useDispatch();
 
   const handleSortType = (id) => {
@@ -16,7 +16,7 @@ const Popup = ({ popupHidden, sortNames, className, handlePopup }) => {
       item.id === id
         ? dispatch(setSortType(item.sortType)) &&
           dispatch(setSortOrder(item.orderType)) &&
-          dispatch(setId(item.id))
+          dispatch(setSortId(item.id))
         : null
     );
     handlePopup();
